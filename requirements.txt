@@ -1,0 +1,20 @@
+# 项目依赖清单
+# 作用：别人拿到这个项目，一条命令就能装齐所有依赖：
+#       python -m pip install -r requirements.txt
+# 原则：全部锁定精确版本。用 >= 或 latest，今天能跑明天可能就挂，
+#       排查时你无法确定是代码问题还是依赖升级导致的。
+# 环境：Python 3.13.0（开发机为 Windows）
+
+pytest==9.0.0           # 测试框架，负责收集/执行/断言/夹具
+requests==2.32.5        # HTTP 请求库，封装层的底座
+PyYAML==6.0.3           # 解析 yaml 配置与测试数据
+allure-pytest==2.15.0   # pytest 插件，把用例执行过程导出成 allure 原始结果
+Faker==40.36.0          # 造测试数据（用户名、随机数等），第 6 步会用到
+
+# 说明：allure 命令行工具（渲染 HTML 报告）不是 pip 包，
+# 你是通过独立安装包装的，版本 2.36.0，已在 PATH 中，无需写进这里。
+
+# 刻意不列入的依赖：
+# pytest-xdist      —— 本项目禁用 -n 并行（服务是全局共享内存态，并发必互相污染）
+# pytest-html       —— 报告统一用 allure；它在 pytest 9 下会刷一条无害警告
+# pytest-result-log —— 功能与 pytest.ini 的 log_cli 重复，同样会刷警告
