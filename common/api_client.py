@@ -39,14 +39,14 @@ class ApiClient:
         self.logger = get_logger("client")
         self._token: str | None = None
 
+        # 一个线程 / 一个用户 / 一条用例链 → 一个 Session。
         # Session 的作用：
         # 1) 复用 TCP 连接（同一 host 的多次请求不必重新握手）
         # 2) 自动保存并回传 cookie
         # 3) 请求头可以在 session 级别统一设置
         self.session = requests.Session()
         self.session.headers.update({
-            "Content-Type": "application/json",   # 本项目的接口都收 JSON
-            "Accept": "application/json",
+            "Accept": "application/json"
         })
 
         if token:

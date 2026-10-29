@@ -33,3 +33,7 @@ Thumbs.db
 
 # 个人开发笔记，只留在本地，绝不进仓库
 docs/dev-notes.md
+
+pytest-cache-files-*/
+
+test_demo_checker.py
